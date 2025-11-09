@@ -3,6 +3,7 @@ import { Store } from '../../interfaces/settings.interface';
 
 @Component({
   selector: 'my-price-category-card',
+  standalone: true,
   imports: [],
   templateUrl: './category-card.html',
   styleUrl: './category-card.scss',

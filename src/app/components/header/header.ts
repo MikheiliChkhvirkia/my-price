@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'my-price-header',
-  imports: [FormsModule],
+  standalone: true,
+  imports: [FormsModule, RouterLink, RouterLinkActive],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
