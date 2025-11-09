@@ -1,0 +1,10 @@
+<div class="category-card" (click)="onCategoryClick()" [style.border-color]="category().color || '#ddd'">
+  @if (category().imageUrl) {
+    <div class="category-image">
+      <img [src]="category().imageUrl" [alt]="category().title || 'Category'" loading="lazy" />
+    </div>
+  }
+  <div class="category-content" [style.background-color]="category().color || '#fff'">
+    <h3 class="category-title">{{ category().title || 'Category' }}</h3>
+  </div>
+</div>
