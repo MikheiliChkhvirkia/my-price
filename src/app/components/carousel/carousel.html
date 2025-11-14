@@ -1,0 +1,25 @@
+<div class="carousel">
+  <button
+    type="button"
+    class="carousel-arrow left"
+    (click)="scroll('left')"
+    [disabled]="!canScrollPrev()"
+    aria-label="Previous"
+  >
+    <span aria-hidden="true">&#10094;</span>
+  </button>
+
+  <div class="carousel-track" #track (scroll)="onTrackScroll()">
+    <ng-content></ng-content>
+  </div>
+
+  <button
+    type="button"
+    class="carousel-arrow right"
+    (click)="scroll('right')"
+    [disabled]="!canScrollNext()"
+    aria-label="Next"
+  >
+    <span aria-hidden="true">&#10095;</span>
+  </button>
+</div>

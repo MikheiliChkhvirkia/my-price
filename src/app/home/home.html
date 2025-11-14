@@ -1,9 +1,29 @@
-<section class="home-hero">
-  <div class="hero-content">
-    <h1>MyPrice</h1>
-    <p>
-      აღმოაჩინე საუკეთესო ფასები კატეგორიებისა და მაღაზიების მიხედვით.
-    </p>
-    <a routerLink="/categories" class="hero-button">ნახე კატეგორიები</a>
+<section class="home-section">
+  <div class="section-header">
+    <h2>პროდუქტები</h2>
   </div>
+
+  @if (productsLoading()) {
+    <div class="home-loading">
+      <div class="spinner"></div>
+      <p>იტვირთება...</p>
+    </div>
+  }
+
+  @if (!productsLoading() && products().length > 0) {
+    <div class="products-grid">
+      @for (item of products(); track item.product.url) {
+        <my-price-product-item
+          [product]="item.product"
+          [store]="item.store"
+        ></my-price-product-item>
+      }
+    </div>
+  }
+
+  @if (!productsLoading() && products().length === 0) {
+    <div class="home-empty">
+      <p>პროდუქტები არ მოიძებნა</p>
+    </div>
+  }
 </section>

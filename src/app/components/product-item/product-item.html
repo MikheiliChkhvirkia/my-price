@@ -1,0 +1,50 @@
+<div class="product-item" (click)="onProductClick()">
+  <div class="product-image" [style.background-image]="'url(' + product().imageUrl + ')'">
+    <div class="product-overlay">
+      <!-- Top Left: Store Logo/Name -->
+      <div class="product-header-left">
+        @if (store()) {
+          <span class="store-name">{{ store()!.title }}</span>
+        }
+      </div>
+
+      <!-- Top Right: Product Key and Offer Banner -->
+      <div class="product-header-right">
+        @if (getDiscountPercent()) {
+          <div class="offer-banner">
+            -{{ getDiscountPercent() }}%
+          </div>
+        }
+        <button 
+          class="favorite-button" 
+          (click)="onFavoriteClick($event)"
+          aria-label="Add to favorites"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Bottom Left: Price -->
+      <div class="product-price">
+        <span class="original-price">{{ product().price }}₾</span>
+        <span class="current-price">{{ getDisplayPrice() }}<span class="currency">₾</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Bar: Store Logo and Validity Date -->
+  <div class="product-footer">
+    <div class="footer-left">
+      @if (store()?.imageUrl) {
+        <img [src]="store()!.imageUrl" [alt]="store()!.title" class="footer-logo" />
+      }
+    </div>
+    @if (validityDate()) {
+      <div class="footer-right">
+        <span class="validity-date">{{ validityDate() }}-მდე</span>
+      </div>
+    }
+  </div>
+</div>
