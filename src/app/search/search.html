@@ -1,4 +1,27 @@
-<div class="search-container">
-  <h1>Search</h1>
-  <!-- Search content will be added here -->
-</div>
+@if (loading()) {
+  <div class="search-loading">
+    იტვირთება...
+  </div>
+}
+
+@if (!loading() && !error()) {
+  <my-price-carousel>
+    @for (cat of categories(); track cat.key) {
+      <my-price-category-item
+        [data]="cat"
+        [selected]="selectedKey() === cat.key"
+        (select)="onSelectCategory($event)"
+      ></my-price-category-item>
+    }
+  </my-price-carousel>
+
+  <my-price-carousel>
+    @for (store of visibleStores(); track store.key) {
+      <my-price-store-item [data]="store"></my-price-store-item>
+    }
+  </my-price-carousel>
+}
+
+@if (error()) {
+  <div class="search-error">{{ error() }}</div>
+}

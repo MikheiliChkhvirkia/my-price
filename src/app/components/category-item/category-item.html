@@ -1,0 +1,23 @@
+<button
+  class="category-item"
+  [class.selected]="selected()"
+  type="button"
+  (click)="onClick()"
+  aria-pressed="{{ selected() }}"
+>
+  @if (data().imageUrl) {
+    <span class="thumb">
+      <img [src]="data().imageUrl!" [alt]="data().title" />
+    </span>
+  }
+  <span class="text">
+    <span class="title">{{ data().title }}</span>
+    @if (data().storeCount !== undefined) {
+      <span class="meta">
+        {{ data().storeCount }} მაღაზია
+      </span>
+    }
+  </span>
+</button>
+
+

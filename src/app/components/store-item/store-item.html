@@ -1,0 +1,15 @@
+<button class="store-item" type="button">
+  @if (data().imageUrl) {
+    <span class="thumb">
+      <img [src]="data().imageUrl!" [alt]="data().title" />
+    </span>
+  }
+  <span class="text">
+    <span class="title">{{ data().title }}</span>
+    @if (data().meta) {
+      <span class="meta">{{ data().meta }}</span>
+    }
+  </span>
+</button>
+
+
