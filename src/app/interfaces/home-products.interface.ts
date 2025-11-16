@@ -7,6 +7,12 @@ export interface Product {
   source: number;
   productKey: string;
   relevanceScore: number;
+  store: {
+    color: string;
+    imageUrl: string;
+    link: string;
+    title: string;
+  }
 }
 
 export interface StoreData {

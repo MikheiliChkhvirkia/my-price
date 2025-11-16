@@ -185,8 +185,8 @@ export class Search implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef$))
       .subscribe({
         next: (storeData: StoreData) => {
+          console.log(storeData.products);
           this.products.set([...storeData.products]);
-          console.log(this.products());
         },
         error: () => {
           this.productsLoading.set(false);

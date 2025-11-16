@@ -36,6 +36,7 @@
       @for (p of pagedProducts(); track p.name) {
         <my-price-product-item
           [product]="p"
+          [store]="p.store"
         ></my-price-product-item>
       }
     </div>
