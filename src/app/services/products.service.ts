@@ -1,12 +1,13 @@
-import { Injectable } from "@angular/core";
+import { Injectable, signal } from "@angular/core";
 import { Observable, Subject } from "rxjs";
-import { StoreData, Product } from "../interfaces/home-products.interface";
+import { StoreData } from "../interfaces/home-products.interface";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
   private abortController?: AbortController;
+  categoryChanged = signal<boolean>(false);
 
   getProductsStream(
     categoryId?: string,

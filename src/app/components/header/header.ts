@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'my-price-header',
@@ -10,8 +11,18 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header.scss',
 })
 export class Header {
+  private router = inject(Router);
+  private productsService = inject(ProductsService);
+
   searchQuery: string = '';
-  constructor(private router: Router) {}
+
+  constructor() {
+    effect(() => {
+      if (this.productsService.categoryChanged()) {
+        this.searchQuery = '';
+      }
+    });
+  }
 
   onSearch(): void {
     if (this.searchQuery.trim()) {

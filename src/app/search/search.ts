@@ -173,6 +173,8 @@ export class Search implements OnInit {
     this.products.set([]);
     this.currentPage.set(1);
 
+    this.productsService.categoryChanged.set(true);
+
     if (this.selectedKey() === key) {
       this.selectedKey.set(null);
       this.router.navigate([], {
