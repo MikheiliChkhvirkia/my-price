@@ -1,0 +1,11 @@
+<div class="store-card" (click)="onStoreClick()" [style.border-color]="store().color || '#ddd'">
+  @if (store().imageUrl) {
+    <div class="store-image">
+      <img [src]="store().imageUrl" [alt]="store().title || 'Store'" loading="lazy" />
+    </div>
+  }
+  <div class="store-content" [style.background-color]="store().color || '#fff'">
+    <h3 class="store-title">{{ store().title || 'Store' }}</h3>
+  </div>
+</div>
+

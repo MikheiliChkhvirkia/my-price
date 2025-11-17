@@ -1,0 +1,35 @@
+<div class="stores-container">
+  <h1 class="page-title">მაღაზიები</h1>
+
+  @if (loading()) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>იტვირთება...</p>
+    </div>
+  }
+
+  @if (error()) {
+    <div class="error-state">
+      <p>{{ error() }}</p>
+      <button class="retry-button" (click)="loadStores()">ხელახლა ცდა</button>
+    </div>
+  }
+
+  @if (!loading() && !error()) {
+    <div class="stores-grid">
+      @for (item of stores(); track item.key) {
+        <my-price-store-card
+          [store]="item.store"
+          [storeKey]="item.key"
+        ></my-price-store-card>
+      }
+    </div>
+  }
+
+  @if (!loading() && !error() && stores().length === 0) {
+    <div class="empty-state">
+      <p>მაღაზიები არ მოიძებნა</p>
+    </div>
+  }
+</div>
+
