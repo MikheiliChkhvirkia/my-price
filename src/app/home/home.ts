@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ProductItem } from '../components/product-item/product-item';
@@ -25,6 +25,7 @@ export class Home implements OnInit {
   protected productsLoading = signal<boolean>(true);
   protected error = signal<string | null>(null);
   protected storeMap = signal<Map<number, Store>>(new Map());
+  protected showScrollToTop = signal<boolean>(false);
 
   ngOnInit(): void {
     this.loadSettings();
@@ -87,6 +88,20 @@ export class Home implements OnInit {
   protected onSeeAll(storeId: number): void {
     this.router.navigate(['/search'], {
       queryParams: { store: storeId }
+    });
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    const scrollY = window.scrollY;
+    // Show button when scrolled down more than 300px
+    this.showScrollToTop.set(scrollY > 300);
+  }
+
+  protected scrollToTop(): void {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
   }
 }
